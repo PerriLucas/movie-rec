@@ -15,7 +15,7 @@ def create_pipeline(**kwargs) -> Pipeline:
         [
             node(
                 func=final_movie_filter,
-                inputs="movies_titleless",
+                inputs=["movies_titleless", "movies_with_ratings"],
                 outputs="final_movies",
                 name="final_movie_filter_node",
             ),
@@ -33,7 +33,7 @@ def create_pipeline(**kwargs) -> Pipeline:
             ),
             node(
                 func=stratify_dataset,
-                inputs=["total_ratings_in", "grouped_ratings"],
+                inputs=["grouped_ratings"],
                 outputs=["training_sample", "stratified_sample"],
                 name="stratify_dataset_node",
             ),

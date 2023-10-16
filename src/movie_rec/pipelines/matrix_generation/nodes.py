@@ -1,5 +1,4 @@
-"""This is a boilerplate pipeline 'serving' generated using Kedro 0.18.4."""
-
+from kedro.extras.datasets.pandas import CSVDataSet
 import pandas as pd
 import numpy as np
 from scipy.sparse import csr_matrix
@@ -8,8 +7,8 @@ def generate_training_ratings(train_df) :
     rec_matrix = csr_matrix(train_df)
     return rec_matrix
 
-def generate_feature_matrix(final_movies_fixed) :
-    final_movies_matrix = csr_matrix(final_movies_fixed)
+def generate_feature_matrix(final_movies) :
+    final_movies_matrix = csr_matrix(final_movies)
     return final_movies_matrix
 
 def transfom_genre_list(unique_genres) :

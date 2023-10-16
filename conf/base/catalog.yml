@@ -38,9 +38,6 @@ ratings_no_tmstp:
 ratings_filtered:
   type: kedro.io.MemoryDataSet
 
-movies_with_ratings:
-  type: kedro.io.MemoryDataSet
-
 pivoted_ratings:
   type: kedro.io.MemoryDataSet
 
@@ -63,6 +60,9 @@ prepare_test_df:
 prepare_train_df:
   type: kedro.io.MemoryDataSet
 
+final_movies_matrix:
+  type: kedro.io.MemoryDataSet
+
 # Generate training ratings matrix
 generate_training_ratings:
   type: kedro.io.MemoryDataSet
@@ -70,6 +70,24 @@ generate_training_ratings:
 # Movies x features Matrix
 generate_feature_matrix:
   type: kedro.io.MemoryDataSet
+
+train_df:
+  type: pandas.CSVDataSet
+  filepath: data/02_intermediate/train_df.csv
+  load_args:
+    sep: ","
+    na_values: ["#NA", NA]
+  save_args:
+    index: False
+
+final_movies_fixed:
+  type: pandas.CSVDataSet
+  filepath: data/02_intermediate/final_movies_fixed.csv
+  load_args:
+    sep: ","
+    na_values: ["#NA", NA]
+  save_args:
+    index: False
 
 # Generate empty user x feature
 generate_empty_matrix:

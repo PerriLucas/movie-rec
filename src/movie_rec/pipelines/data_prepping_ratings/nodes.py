@@ -1,6 +1,5 @@
 """This is a boilerplate pipeline 'feature_engineering' generated using Kedro
 0.18.4."""
-
 import pandas as pd
 import numpy as np
 
@@ -15,7 +14,7 @@ def drop_timestamp(ratings) :
 
 # Filter out movies without genres
 def filter_out_movies_no_genre(ratings_no_tmstp, movie_with_genres) :
-    ratings = ratings_no_tmstp[ratings_no_tmstp['movieId'].isin(movie_with_genres)]
+    ratings_filtered = ratings_no_tmstp[ratings_no_tmstp['movieId'].isin(movie_with_genres)]
     return ratings_filtered
 
 #Create a list of movies with ratings
@@ -42,12 +41,12 @@ def create_total_ratings(filtered_pivoted_ratings) :
 
 #Remove Users with no ratings
 def ratingless_users(ratings_total) :
-    final_ratings = ratings_total[pivoted_ratings['total_ratings'] > 0] 
+    final_ratings = ratings_total[ratings_total['total_ratings'] > 0] 
     total_ratings_in = final_ratings
     return total_ratings_in
 
 #remove rating column for the matrix use
 def final_ratings(ratings_total) :
-    final_ratings = ratings_total[pivoted_ratings['total_ratings'] > 0]
+    final_ratings = ratings_total[ratings_total['total_ratings'] > 0]
     final_ratings = final_ratings.drop('total_ratings', axis=1)
     return final_ratings

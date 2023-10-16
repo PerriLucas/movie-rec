@@ -23,20 +23,20 @@ def turn_values_into_columns(unique_genres, movies) :
     return movies_pivoted
 
 def fix_columns_movies(movies_pivoted) :
-    movies = movies_pivoted.drop('genres', axis=1)
-    movies.columns = movies_pivoted.columns.str.replace('(', '')
-    movies.columns = movies_pivoted.columns.str.replace(')', '')
-    movies.columns = movies_pivoted.columns.str.replace(' ', '')
+    movies_fixed = movies_pivoted.drop('genres', axis=1)
+    movies_fixed.columns = movies_fixed.columns.str.replace('(', '')
+    movies_fixed.columns = movies_fixed.columns.str.replace(')', '')
+    movies_fixed.columns = movies_fixed.columns.str.replace(' ', '')
     return movies_fixed
 
 #Removes movies without associated genres
 def filter_out_non_genre(movies_fixed) :
-    movies = movies_fixed[movies_fixed.nogenreslisted != 1]
+    movies_usable_genres = movies_fixed[movies_fixed.nogenreslisted != 1]
     return movies_usable_genres
 
 def remove_non_genre_column(movies_usable_genres) :
 # Removes the column no genres listed
-    movies = movies_usable_genres.drop('nogenreslisted', axis=1)
+    movies_removed_column = movies_usable_genres.drop('nogenreslisted', axis=1)
     return movies_removed_column
 
 def titleless_movies(movies_removed_column):
