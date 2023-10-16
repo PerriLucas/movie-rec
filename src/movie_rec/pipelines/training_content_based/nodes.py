@@ -65,8 +65,9 @@ def fixed_cb_recs() :
     drop_columns = ['first_rec', 'second_rec',	'third_rec'	,'fourth_rec',	'fifth_rec', 'movieId', 'movieId2', 'movieId3', 'movieId4', 'movieId5',]
     user_movies_df = user_movies_df.drop(columns=drop_columns)
     user_movies_df.columns = ['first_rec', 'second_rec', 'third_rec', 'fourth_rec', 'fifth_rec']
-    return user_movies_df
+    return rec_cb
 
 #save output in a csv
 def output_cb() :
     rec_cb.to_csv('rec_cb_model.csv', index=False)
+    return rec_cb

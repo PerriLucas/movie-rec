@@ -28,6 +28,7 @@ def transpose_item_matrix() :
 def aux_matrix_train_cf() :
     aux_matrix = rec_matrix.dot(movie_vector_t)
     return aux_matrix
+
 # Apply approximate SVD model to obtain approximate relevance vectors
 def user_movies_vectors() :
     aux_matrix = rec_matrix.dot(movie_vector_t)
@@ -86,3 +87,4 @@ def fixed_cf_recs() :
 #save output in a csv
 def output_cf() :
     rec_cf.to_csv('rec_cf_model.csv', index=False)
+    return rec_cf

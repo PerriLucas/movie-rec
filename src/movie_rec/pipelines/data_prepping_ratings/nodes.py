@@ -36,7 +36,7 @@ def remove_outliers() :
     return filtered_pivoted_ratings
 
 def create_total_ratings() :
-    pivoted_ratings['total_ratings'] = pivoted_ratings.count()
+    filtered_pivoted_ratings['total_ratings'] = filtered_pivoted_ratings.count()
     return pivoted_ratings
 
 #Remove Users with no ratings
