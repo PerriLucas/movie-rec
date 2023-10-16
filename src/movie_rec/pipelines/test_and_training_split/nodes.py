@@ -41,4 +41,5 @@ def prepare_test_df(stratified_sample) :
 
 def prepare_train_df(training_sample) :
     train_df = training_sample.drop(['total_ratings', 'range'], axis=1)
-    return train_df
+    train_df_df = pd.DataFrame(train_df)
+    return train_df, train_df_df

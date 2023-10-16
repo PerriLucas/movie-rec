@@ -72,8 +72,36 @@ generate_feature_matrix:
   type: kedro.io.MemoryDataSet
 
 train_df:
+  type: kedro.io.MemoryDataSet
+
+rec_matrix:
+  type: kedro.io.MemoryDataSet
+  
+rec_matrix_txt:
+  type: text.TextDataSet
+  filepath: data/02_intermediate/rec_matrix.txt
+
+train_df_df:
   type: pandas.CSVDataSet
-  filepath: data/02_intermediate/train_df.csv
+  filepath: data/02_intermediate/train_df_df.csv
+
+user_feature_empty:
+  type: kedro.io.MemoryDataSet
+
+aux_matrix_train:
+  type: kedro.io.MemoryDataSet
+
+aux_matrix_train_df:
+  type: pandas.CSVDataSet
+  filepath: data/02_intermediate/aux_matrix_train_df.csv
+
+final_movies_fixed_df:
+  type: pandas.CSVDataSet
+  filepath: data/02_intermediate/final_movies_fixed_df.csv
+
+user_feature_empty_df:
+  type: pandas.CSVDataSet
+  filepath: data/02_intermediate/user_feature_empty.csv
 
 unique_genres_list:
   type: kedro.io.MemoryDataSet
@@ -92,6 +120,10 @@ aux_matrix:
 # Generate test ratings matrix
 test_matrix:
   type: kedro.io.MemoryDataSet
+
+test:
+  type: pandas.CSVDataSet
+  filepath: data/02_intermediate/test.csv
 
 ################### Outputs ###################
 

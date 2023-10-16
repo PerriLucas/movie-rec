@@ -17,7 +17,7 @@ def create_pipeline(**kwargs) -> Pipeline:
             node(
                 func=user_feature_matrix,
                 inputs=["rec_matrix", "aux_matrix_train", "user_feature_empty"],
-                outputs="user_feature",
+                outputs=["user_feature", "test"],
                 name="user_feature_matrix_node",
             ),
             node(

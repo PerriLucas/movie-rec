@@ -46,7 +46,7 @@ def create_pipeline(**kwargs) -> Pipeline:
            node(
                 func=prepare_train_df,
                 inputs="training_sample",
-                outputs="train_df",
+                outputs=["train_df", "train_df_df"],
                 name="prepare_train_df",
             ),
     ]

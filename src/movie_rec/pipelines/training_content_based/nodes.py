@@ -7,10 +7,11 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 # Normalizing the matrix
 def user_feature_matrix(rec_matrix,aux_matrix_train, user_feature_empty) :
+    user_feature = user_feature_empty
     for u in range(rec_matrix.shape[0]):
       n_notnull = rec_matrix[u,:].count_nonzero()
       if (n_notnull != 0):
-          user_feature_empty[u,:] = np.dot(1/float(n_notnull), aux_matrix_train[u,:])
+          user_feature[u,:] = np.dot(1/float(n_notnull), aux_matrix_train[u,:])
     return user_feature
 
 def cosine_similarity_prediction(user_feature,final_movies_matrix) :
