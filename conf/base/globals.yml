@@ -1,0 +1,14 @@
+# Globals dictionary of variables to be used all over the kedro project.
+
+# This dictionary is called by the TemplatedConfigLoader in 
+# src/movie_rec/settings.py config file.
+
+# Example usage:
+
+# some:
+#   value: 50
+
+# You can call it in another file as ${some:value}
+
+# Documentation for this and other configuration can be found in "Configuration"
+# https://docs.kedro.org/en/stable/kedro_project_setup/configuration.html#template-configuration.
