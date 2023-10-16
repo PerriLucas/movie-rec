@@ -35,7 +35,7 @@ def create_pipeline(**kwargs) -> Pipeline:
             ),
             node(
                 func=movies_with_ratings,
-                inputs="ratings_total",
+                inputs="ratings_filtered",
                 outputs="movies_with_ratings",
                 name="movies_with_ratings_node",
             ),
@@ -53,7 +53,7 @@ def create_pipeline(**kwargs) -> Pipeline:
             ),
             node(
                 func=create_total_ratings,
-                inputs="filtered_pivoted_ratings",
+                inputs="pivoted_ratings",
                 outputs="ratings_total",
                 name="create_total_ratings_node",
             ),

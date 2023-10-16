@@ -46,5 +46,5 @@ def titleless_movies(movies_removed_column):
 
 def list_movies_with_genre(movies_removed_column) :
     #Creates a list of movie_ids that have genres
-    movie_with_genres = movies_removed_column['movieId'].to_list()
+    movie_with_genres = list(movies_removed_column['movieId'])
     return movie_with_genres

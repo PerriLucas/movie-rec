@@ -34,9 +34,9 @@ def remove_outliers(pivoted_ratings) :
     filtered_pivoted_ratings = pivoted_ratings[filtered_movies.index]
     return filtered_pivoted_ratings
 
-def create_total_ratings(filtered_pivoted_ratings) :
-    ratings_total = filtered_pivoted_ratings
-    ratings_total['total_ratings'] = filtered_pivoted_ratings.count()
+def create_total_ratings(pivoted_ratings) :
+    ratings_total = pivoted_ratings
+    ratings_total['total_ratings'] = ratings_total.count()
     return ratings_total
 
 #Remove Users with no ratings
