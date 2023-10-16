@@ -49,12 +49,12 @@ def create_pipeline(**kwargs) -> Pipeline:
             node(
                 func=list_padding_cb,
                 inputs=["recommendation", "max_length"],
-                outputs="recommendation",
+                outputs="recommendation_padded",
                 name="list_padding_cb_node",
             ),
             node(
                 func=convert_cb_df,
-                inputs="recommendation",
+                inputs="recommendation_padded",
                 outputs="recommendations_df",
                 name="convert_cb_df_node",
             ),
@@ -67,7 +67,7 @@ def create_pipeline(**kwargs) -> Pipeline:
             node(
                 func=output_cb,
                 inputs="rec_cb",
-                outputs="rec_cb",
+                outputs=[],
                 name="output_cb",
             ),
     ]

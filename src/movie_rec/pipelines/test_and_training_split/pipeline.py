@@ -25,19 +25,19 @@ def create_pipeline(**kwargs) -> Pipeline:
             node(
                 func=final_movie_matrix,
                 inputs="final_movies",
-                outputs="final_movies",
+                outputs="final_movies_fixed",
                 name="final_movie_matrix_node",
             ),
             node(
                 func=grouped_population,
                 inputs="total_ratings_in",
-                outputs="total_ratings_in",
+                outputs="grouped_ratings",
                 name="grouped_population_node",
             ),
             node(
                 func=stratify_dataset,
-                inputs="total_ratings_in",
-                outputs=["train_df", "stratified_sample"],
+                inputs=["total_ratings_in", "grouped_ratings"],
+                outputs=["training_sample", "stratified_sample"],
                 name="stratify_dataset_node",
             ),
             node(
@@ -48,7 +48,7 @@ def create_pipeline(**kwargs) -> Pipeline:
             ),
            node(
                 func=prepare_train_df,
-                inputs="train_df",
+                inputs="training_sample",
                 outputs="train_df",
                 name="prepare_train_df",
             ),

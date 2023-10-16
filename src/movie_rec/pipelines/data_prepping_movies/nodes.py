@@ -19,31 +19,31 @@ def turn_values_into_columns(unique_genres, movies) :
     for index, row in movies.iterrows() :
         for genre in row['genres']:
             movies.at[index, genre] = 1
-    return movies
+    return movies_pivoted
 
-def fix_columns_movies(movies) :
-    movies = movies.drop('genres', axis=1)
-    movies.columns = movies.columns.str.replace('(', '')
-    movies.columns = movies.columns.str.replace(')', '')
-    movies.columns = movies.columns.str.replace(' ', '')
-    return movies
+def fix_columns_movies(movies_pivoted) :
+    movies = movies_pivoted.drop('genres', axis=1)
+    movies.columns = movies_pivoted.columns.str.replace('(', '')
+    movies.columns = movies_pivoted.columns.str.replace(')', '')
+    movies.columns = movies_pivoted.columns.str.replace(' ', '')
+    return movies_fixed
 
 #Removes movies without associated genres
-def filter_out_non_genre(movies) :
-    movies = movies[movies.nogenreslisted != 1]
-    return movies
+def filter_out_non_genre(movies_fixed) :
+    movies = movies_fixed[movies_fixed.nogenreslisted != 1]
+    return movies_usable_genres
 
-def remove_non_genre_column(movies) :
+def remove_non_genre_column(movies_usable_genres) :
 # Removes the column no genres listed
-    movies = movies.drop('nogenreslisted', axis=1)
-    return movies
+    movies = movies_usable_genres.drop('nogenreslisted', axis=1)
+    return movies_removed_column
 
-def titleless_movies(movies):
+def titleless_movies(movies_removed_column):
     #Creates a dataframe without title for use later
-    movies_titleless = movies.drop('title', axis=1)
+    movies_titleless = movies_removed_column.drop('title', axis=1)
     return movies_titleless
 
-def list_movies_with_genre(movies) :
+def list_movies_with_genre(movies_removed_column) :
     #Creates a list of movie_ids that have genres
-    movie_with_genres = movies['movieId'].to_list()
+    movie_with_genres = movies_removed_column['movieId'].to_list()
     return movie_with_genres

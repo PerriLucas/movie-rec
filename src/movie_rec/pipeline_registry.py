@@ -3,7 +3,7 @@ from typing import Dict
 
 from kedro.pipeline import Pipeline
 
-# from kedro.framework.project import find_pipelines
+from kedro.framework.project import find_pipelines
 
 from movie_rec.pipelines import (
     data_prepping_movies,

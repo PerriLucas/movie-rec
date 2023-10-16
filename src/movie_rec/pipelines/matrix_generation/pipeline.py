@@ -29,7 +29,7 @@ def create_pipeline(**kwargs) -> Pipeline:
             node(
                 func=transfom_genre_list,
                 inputs="unique_genres",
-                outputs="unique_genres",
+                outputs="unique_genres_list",
                 name="transfom_genre_list_node",
             ),
             node(
