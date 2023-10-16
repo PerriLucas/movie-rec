@@ -13,13 +13,14 @@ def generate_feature_matrix(final_movies_fixed) :
     return final_movies_matrix
 
 def transfom_genre_list(unique_genres) :
-    unique_genres = list(unique_genres)
+    unique_genres_list = list(unique_genres)
     return unique_genres_list
 
 def generate_empty_matrix(unique_genres_list,rec_matrix) :
     len_rec_matrix = rec_matrix.shape[0]
     len_features = len(unique_genres_list)-1
-    user_feature = csr_matrix((len_rec_matrix, len_features), dtype=np.float64)
+    user_feature_empty = csr_matrix((len_rec_matrix, len_features), dtype=np.float64)
+    return user_feature_empty
 
 def aux_matrix(rec_matrix,final_movies_matrix) :
     aux_matrix_train = np.dot(rec_matrix, final_movies_matrix)

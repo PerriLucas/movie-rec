@@ -5,16 +5,16 @@ import pandas as pd
 import numpy as np
 
 def ratings_raw_data_get() :
-    ratings = pd.read_csv('/data/01_raw/ratings.csv', header=0, index_col = 0)
+    ratings = pd.read_csv('data/01_raw/ratings.csv', header=0, index_col = 0)
     return ratings
 
 #remove timestamp rating column
 def drop_timestamp(ratings) :
-    ratings = ratings.drop('timestamp', axis=1)
+    ratings_no_tmstp = ratings.drop('timestamp', axis=1)
     return ratings_no_tmstp
 
 # Filter out movies without genres
-def filter_out_movies_no_genre(ratings_no_tmstp) :
+def filter_out_movies_no_genre(ratings_no_tmstp, movie_with_genres) :
     ratings = ratings_no_tmstp[ratings_no_tmstp['movieId'].isin(movie_with_genres)]
     return ratings_filtered
 
@@ -36,6 +36,7 @@ def remove_outliers(pivoted_ratings) :
     return filtered_pivoted_ratings
 
 def create_total_ratings(filtered_pivoted_ratings) :
+    ratings_total = filtered_pivoted_ratings
     ratings_total['total_ratings'] = filtered_pivoted_ratings.count()
     return ratings_total
 

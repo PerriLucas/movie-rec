@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 
 def movie_raw_data_get() :
-    movies = pd.read_csv('/data/01_raw/movies.csv', header=0, converters={'genres': lambda x: x[0:].split('|')})
+    movies = pd.read_csv('data/01_raw/movies.csv', header=0, converters={'genres': lambda x: x[0:].split('|')})
     return movies
 
 # Turns the unique values for the np array Genres into columns filled with 0 if the movie isnt associated with that genre, or 1 if it is
@@ -14,11 +14,12 @@ def list_unique_genres(movies) :
     return unique_genres
 
 def turn_values_into_columns(unique_genres, movies) :
+    movies_pivoted = movies
     for genre in unique_genres:
-        movies[genre] = 0
-    for index, row in movies.iterrows() :
+        movies_pivoted[genre] = 0
+    for index, row in movies_pivoted.iterrows() :
         for genre in row['genres']:
-            movies.at[index, genre] = 1
+            movies_pivoted.at[index, genre] = 1
     return movies_pivoted
 
 def fix_columns_movies(movies_pivoted) :

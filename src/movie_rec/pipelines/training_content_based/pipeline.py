@@ -1,5 +1,3 @@
-"""This is a boilerplate pipeline 'training' generated using Kedro 0.18.4."""
-
 from kedro.pipeline import Pipeline, pipeline
 from kedro.pipeline import node
 
@@ -18,7 +16,7 @@ def create_pipeline(**kwargs) -> Pipeline:
         [
             node(
                 func=user_feature_matrix,
-                inputs=["rec_matrix", "aux_matrix_train"],
+                inputs=["rec_matrix", "aux_matrix_train", "user_feature_empty"],
                 outputs="user_feature",
                 name="user_feature_matrix_node",
             ),
@@ -43,12 +41,12 @@ def create_pipeline(**kwargs) -> Pipeline:
             node(
                 func=expand_cb_rec_list,
                 inputs="recommendation",
-                outputs="max_length",
+                outputs="max_length_cb",
                 name="expand_cb_rec_list_node",
             ),
             node(
                 func=list_padding_cb,
-                inputs=["recommendation", "max_length"],
+                inputs=["recommendation", "max_length_cb"],
                 outputs="recommendation_padded",
                 name="list_padding_cb_node",
             ),

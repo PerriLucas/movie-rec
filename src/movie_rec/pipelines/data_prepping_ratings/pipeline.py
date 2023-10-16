@@ -1,6 +1,3 @@
-"""This is a boilerplate pipeline 'feature_engineering' generated using Kedro
-0.18.4."""
-
 from kedro.pipeline import Pipeline, pipeline
 from kedro.pipeline import node
 
@@ -32,7 +29,7 @@ def create_pipeline(**kwargs) -> Pipeline:
             ),
             node(
                 func=filter_out_movies_no_genre,
-                inputs="ratings_no_tmstp",
+                inputs=["ratings_no_tmstp", "movie_with_genres"],
                 outputs="ratings_filtered",
                 name="filter_out_movies_no_genre_node",
             ),
