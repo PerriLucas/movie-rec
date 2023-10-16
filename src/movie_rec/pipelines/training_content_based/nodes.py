@@ -17,6 +17,10 @@ def cosine_similarity_prediction() :
     prediction = cosine_similarity(user_feature,final_movies_matrix)
     return prediction
 
+def rec_size() :
+    rec_size = 5
+    return rec_size
+
 def user_recommendation() :
     recommendation = {}
 
@@ -62,3 +66,7 @@ def fixed_cb_recs() :
     user_movies_df = user_movies_df.drop(columns=drop_columns)
     user_movies_df.columns = ['first_rec', 'second_rec', 'third_rec', 'fourth_rec', 'fifth_rec']
     return user_movies_df
+
+#save output in a csv
+def output_cb() :
+    rec_cb.to_csv('rec_cb_model.csv', index=False)

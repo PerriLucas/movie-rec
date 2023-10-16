@@ -19,7 +19,7 @@ def filter_out_movies_no_genre() :
     return ratings
 
 #Create a list of movies with ratings
-def movies_with_ratings
+def movies_with_ratings() :
     movies_with_ratings = ratings['movieId'].unique()
     return movies_with_ratings
 
@@ -46,6 +46,6 @@ def ratingless_users() :
     return total_ratings_in
 
 #remove rating column for the matrix use
-def ratings_matrix() :
+def final_ratings() :
     final_ratings = final_ratings.drop('total_ratings', axis=1)
-    return ratings_matrix
+    return final_ratings

@@ -2,3 +2,78 @@
 #
 # Documentation for this file format can be found in "The Data Catalog"
 # Link: https://kedro.readthedocs.io/en/stable/data/data_catalog.html
+
+################### INPUT DATASETS ###################
+# Table with ratings data
+ratings_raw_data_get:
+  type: pandas.CSVDataSet
+  filepath: data/01_raw/ratings.csv
+
+# Table with movies data
+movie_raw_data_get:
+  type: pandas.CSVDataSet
+  filepath: data/01_raw/movies.csv
+
+################### DATA PREPPING ###################
+
+# List of unique genres
+list_unique_genres:
+  type: kedro.io.MemoryDataSet
+
+# Movies dataset without titles, used for the dataframe
+titleless_movies:
+  type: kedro.io.MemoryDataSet
+
+# List of movie IDs with genre
+list_movies_with_genre:
+  type: kedro.io.MemoryDataSet
+
+# List of movies with at least one rating
+movies_with_ratings:
+  type: kedro.io.MemoryDataSet
+
+# Movies dataframe without ratingless movies for matrix use
+final_movie_matrix:
+  type: kedro.io.MemoryDataSet
+
+# Ratings dataframe for matrix use
+final_ratings:
+  type: kedro.io.MemoryDataSet
+
+# Test dataframe
+prepare_test_df:
+  type: kedro.io.MemoryDataSet
+
+# Training dataframe
+prepare_train_df:
+  type: kedro.io.MemoryDataSet
+
+# Generate training ratings matrix
+generate_training_ratings:
+  type: kedro.io.MemoryDataSet
+
+# Movies x features Matrix
+generate_feature_matrix:
+  type: kedro.io.MemoryDataSet
+
+# Generate empty user x feature
+generate_empty_matrix:
+  type: kedro.io.MemoryDataSet
+
+# Generate aux user x feature matrix
+aux_matrix:
+  type: kedro.io.MemoryDataSet
+
+# Generate test ratings matrix
+test_matrix:
+  type: kedro.io.MemoryDataSet
+
+################### Outputs ###################
+
+output_cf:
+  type: pandas.CSVDataSet
+    filepath: data/07_model_output/rec_cf_model.csv
+
+output_cb:
+  type: pandas.CSVDataSet
+    filepath: data/07_model_output/rec_cb_model.csv
