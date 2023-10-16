@@ -9,11 +9,11 @@ def movie_raw_data_get() :
     return movies
 
 # Turns the unique values for the np array Genres into columns filled with 0 if the movie isnt associated with that genre, or 1 if it is
-def list_unique_genres() :
+def list_unique_genres(movies) :
     unique_genres = set(genre for genres_list in movies['genres'] for genre in genres_list)
     return unique_genres
 
-def turn_values_into_columns() :
+def turn_values_into_columns(unique_genres, movies) :
     for genre in unique_genres:
         movies[genre] = 0
     for index, row in movies.iterrows() :
@@ -21,7 +21,7 @@ def turn_values_into_columns() :
             movies.at[index, genre] = 1
     return movies
 
-def fix_columns_movies() :
+def fix_columns_movies(movies) :
     movies = movies.drop('genres', axis=1)
     movies.columns = movies.columns.str.replace('(', '')
     movies.columns = movies.columns.str.replace(')', '')
@@ -29,21 +29,21 @@ def fix_columns_movies() :
     return movies
 
 #Removes movies without associated genres
-def filter_out_non_genre() :
+def filter_out_non_genre(movies) :
     movies = movies[movies.nogenreslisted != 1]
     return movies
 
-def remove_non_genre_column() :
+def remove_non_genre_column(movies) :
 # Removes the column no genres listed
     movies = movies.drop('nogenreslisted', axis=1)
     return movies
 
-def titleless_movies():
+def titleless_movies(movies):
     #Creates a dataframe without title for use later
     movies_titleless = movies.drop('title', axis=1)
     return movies_titleless
 
-def list_movies_with_genre() :
+def list_movies_with_genre(movies) :
     #Creates a list of movie_ids that have genres
     movie_with_genres = movies['movieId'].to_list()
     return movie_with_genres

@@ -3,10 +3,16 @@ from typing import Dict
 
 from kedro.pipeline import Pipeline
 
-from movie_rec.pipelines import feature_engineering as fe
-from movie_rec.pipelines import serving, training
-
 # from kedro.framework.project import find_pipelines
+
+from movie_rec.pipelines import (
+    data_prepping_movies,
+    data_prepping_ratings,
+    test_and_training_split,
+    matrix_generation,
+    training_content_based,
+    training_collaborative_filter,
+)
 
 
 def register_pipelines() -> Dict[str, Pipeline]:
@@ -15,9 +21,12 @@ def register_pipelines() -> Dict[str, Pipeline]:
     Returns:
         A mapping from pipeline names to ``Pipeline`` objects.
     """
-    feature_engineering_pipeline = fe.create_pipeline()
-    training_pipeline = training.create_pipeline()
-    serving_pipeline = serving.create_pipeline()
+    data_prepping_movies_pipeline = data_prepping_movies.create_pipeline()
+    data_prepping_ratings_pipeline = data_prepping_ratings.create_pipeline()
+    test_and_training_split_pipeline = test_and_training_split.create_pipeline()
+    matrix_generation_pipeline = matrix_generation.create_pipeline()
+    training_content_based_pipeline = training_content_based.create_pipeline()
+    training_collaborative_filter_pipeline = training_collaborative_filter.create_pipeline()
 
     # Leaving this commented as it is a new feature and could be useful eventually
     # As of today, I'm against running everything by default.
@@ -25,10 +34,18 @@ def register_pipelines() -> Dict[str, Pipeline]:
     # pipelines["__default__"] = sum(pipelines.values())
 
     return {
-        "feature_engineer": feature_engineering_pipeline,
-        "train": training_pipeline,
-        "serve": serving_pipeline,
-        "train_and_generate_metrics": (
-            feature_engineering_pipeline + training_pipeline + serving_pipeline
-        ),
+        "content_based_pipeline" : (
+            data_prepping_movies_pipeline,
+            data_prepping_ratings_pipeline,
+            test_and_training_split_pipeline,
+            matrix_generation_pipeline,
+            training_content_based_pipeline
+        )
+        , "collaborative_filter_pipeline" : (
+            data_prepping_movies_pipeline,
+            data_prepping_ratings_pipeline,
+            test_and_training_split_pipeline,
+            matrix_generation_pipeline,
+            training_collaborative_filter_pipeline
+        )
     }

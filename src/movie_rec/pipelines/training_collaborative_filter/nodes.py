@@ -49,8 +49,8 @@ def prediction_cf() :
         for i in order :
             if (cont < rec_size) :
                 if (test_matrix[u,i] == float(0)) :
-                recommended_cf[u].append(i)
-                cont += 1
+                    recommended_cf[u].append(i)
+                    cont += 1
             else:
                 break
     return recommended_cf

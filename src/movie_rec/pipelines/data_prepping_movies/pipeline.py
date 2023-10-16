@@ -2,16 +2,23 @@
 0.18.4."""
 
 from kedro.pipeline import Pipeline, pipeline
+from kedro.pipeline import node
 
-# from kedro.pipeline import node
-
+from .nodes import movie_raw_data_get 
+from .nodes import list_unique_genres 
+from .nodes import turn_values_into_columns 
+from .nodes import fix_columns_movies 
+from .nodes import filter_out_non_genre 
+from .nodes import remove_non_genre_column 
+from .nodes import titleless_movies 
+from .nodes import list_movies_with_genre 
 
 def create_pipeline(**kwargs) -> Pipeline:
     return pipeline(
         [
             node(
                 func=movie_raw_data_get,
-                inputs="movies_raw_data_get",
+                inputs=[],
                 outputs="movies",
                 name="movie_raw_data_get_node",
             ),

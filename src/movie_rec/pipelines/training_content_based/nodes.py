@@ -46,7 +46,7 @@ def expand_cb_rec_list() :
 # Pad the lists with None to make them all the same length
 def list_padding_cb() :
     for key in recommendation:
-    recommendation[key] = recommendation[key] + [None] * (max_length - len(recommendation[key]))
+        recommendation[key] = recommendation[key] + [None] * (max_length - len(recommendation[key]))
     return recommendation
 
 # Convert the dictionary to a DataFrame

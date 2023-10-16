@@ -16,16 +16,19 @@ movie_raw_data_get:
 
 ################### DATA PREPPING ###################
 
+movies:
+  type: kedro.io.MemoryDataSet
+
 # List of unique genres
-list_unique_genres:
+unique_genres:
   type: kedro.io.MemoryDataSet
 
 # Movies dataset without titles, used for the dataframe
-titleless_movies:
+movies_titleless:
   type: kedro.io.MemoryDataSet
 
 # List of movie IDs with genre
-list_movies_with_genre:
+movie_with_genres:
   type: kedro.io.MemoryDataSet
 
 # List of movies with at least one rating

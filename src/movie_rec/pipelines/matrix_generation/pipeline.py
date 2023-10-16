@@ -1,8 +1,14 @@
 """This is a boilerplate pipeline 'serving' generated using Kedro 0.18.4."""
 
 from kedro.pipeline import Pipeline, pipeline
+from kedro.pipeline import node
 
-# from kedro.pipeline import node
+from .nodes import generate_training_ratings 
+from .nodes import generate_feature_matrix 
+from .nodes import transfom_genre_list 
+from .nodes import generate_empty_matrix 
+from .nodes import aux_matrix 
+from .nodes import test_matrix 
 
 
 def create_pipeline(**kwargs) -> Pipeline:

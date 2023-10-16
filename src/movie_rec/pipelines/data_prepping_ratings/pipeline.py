@@ -2,8 +2,17 @@
 0.18.4."""
 
 from kedro.pipeline import Pipeline, pipeline
+from kedro.pipeline import node
 
-# from kedro.pipeline import node
+from .nodes import ratings_raw_data_get 
+from .nodes import drop_timestamp 
+from .nodes import filter_out_movies_no_genre 
+from .nodes import movies_with_ratings 
+from .nodes import pivot_ratings
+from .nodes import remove_outliers
+from .nodes import create_total_ratings
+from .nodes import ratingless_users 
+from .nodes import final_ratings 
 
 
 def create_pipeline(**kwargs) -> Pipeline:
@@ -11,7 +20,7 @@ def create_pipeline(**kwargs) -> Pipeline:
         [
             node(
                 func=ratings_raw_data_get,
-                inputs="ratings_raw_data_get",
+                inputs=[],
                 outputs="ratings",
                 name="ratings_raw_data_get_node",
             ),

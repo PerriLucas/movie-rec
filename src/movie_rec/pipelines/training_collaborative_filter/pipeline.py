@@ -1,9 +1,18 @@
 """This is a boilerplate pipeline 'training' generated using Kedro 0.18.4."""
 
 from kedro.pipeline import Pipeline, pipeline
+from kedro.pipeline import node
 
-# from kedro.pipeline import node
-
+from .nodes import user_item_matrix 
+from .nodes import transpose_item_matrix 
+from .nodes import aux_matrix_train_cf 
+from .nodes import user_movies_vectors 
+from .nodes import rec_size 
+from .nodes import prediction_cf 
+from .nodes import expand_cf_rec_list 
+from .nodes import list_padding_cf 
+from .nodes import fixed_cf_recs
+from .nodes import output_cf 
 
 def create_pipeline(**kwargs) -> Pipeline:
     return pipeline(
@@ -28,7 +37,7 @@ def create_pipeline(**kwargs) -> Pipeline:
             ),
             node(
                 func=user_movies_vectors,
-                inputs=["rec_matrix", "movie_vector_t", "movie_vector"]
+                inputs=["rec_matrix", "movie_vector_t", "movie_vector"],
                 outputs="user_movies",
                 name="user_movies_vectors_node",
             ),

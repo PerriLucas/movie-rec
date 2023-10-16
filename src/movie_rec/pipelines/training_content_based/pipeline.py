@@ -1,9 +1,17 @@
 """This is a boilerplate pipeline 'training' generated using Kedro 0.18.4."""
 
 from kedro.pipeline import Pipeline, pipeline
+from kedro.pipeline import node
 
-# from kedro.pipeline import node
-
+from .nodes import user_feature_matrix 
+from .nodes import cosine_similarity_prediction 
+from .nodes import rec_size 
+from .nodes import user_recommendation 
+from .nodes import expand_cb_rec_list 
+from .nodes import list_padding_cb 
+from .nodes import convert_cb_df 
+from .nodes import fixed_cb_recs 
+from .nodes import output_cb 
 
 def create_pipeline(**kwargs) -> Pipeline:
     return pipeline(
@@ -28,7 +36,7 @@ def create_pipeline(**kwargs) -> Pipeline:
             ),
             node(
                 func=user_recommendation,
-                inputs=["test_matrix", "prediction", "rec_size"]
+                inputs=["test_matrix", "prediction", "rec_size"], 
                 outputs="recommendation",
                 name="user_recommendation_node",
             ),

@@ -2,8 +2,15 @@
 0.18.4."""
 
 from kedro.pipeline import Pipeline, pipeline
+from kedro.pipeline import node
 
-# from kedro.pipeline import node
+from .nodes import final_movie_filter 
+from .nodes import final_movie_matrix 
+from .nodes import grouped_population 
+from .nodes import stratify_dataset 
+from .nodes import prepare_test_df 
+from .nodes import prepare_train_df 
+
 
 
 def create_pipeline(**kwargs) -> Pipeline:
