@@ -24,7 +24,7 @@ def movies_with_ratings(ratings_filtered) :
 
 # Genereate a matrix of user ID x Movie where the intersections are the ratings given to the movies
 def pivot_ratings(ratings_filtered) :
-    pivoted_ratings = ratings_filtered.pivot_table(index= 'userId', columns='movieId', values='rating', fill_value= 0 , aggfunc='mean', )
+    pivoted_ratings = ratings_filtered.pivot_table(index= 'userId', columns='movieId', values='rating', fill_value= 0 , aggfunc='mean')
     return pivoted_ratings
 
  #Remove every movie with only 2 or less ratings
@@ -47,6 +47,5 @@ def ratingless_users(ratings_total) :
 
 #remove rating column for the matrix use
 def final_ratings(ratings_total) :
-    final_ratings = ratings_total[ratings_total['total_ratings'] > 0]
-    final_ratings = final_ratings.drop('total_ratings', axis=1)
+    final_ratings = ratings_total.drop('total_ratings', axis=1)
     return final_ratings

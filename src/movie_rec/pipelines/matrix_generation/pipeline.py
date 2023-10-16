@@ -32,8 +32,8 @@ def create_pipeline(**kwargs) -> Pipeline:
             ),
             node(
                 func=generate_empty_matrix,
-                inputs=["unique_genres", "rec_matrix"],
-                outputs="user_feature_empty",
+                inputs=["unique_genres_list", "rec_matrix"],
+                outputs=["user_feature_empty", "user_feature_empty_df"],
                 name="generate_empty_matrix_node",
             ),
             node(

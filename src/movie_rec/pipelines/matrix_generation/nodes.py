@@ -18,8 +18,9 @@ def transfom_genre_list(unique_genres) :
 def generate_empty_matrix(unique_genres_list,rec_matrix) :
     len_rec_matrix = rec_matrix.shape[0]
     len_features = len(unique_genres_list)-1
-    user_feature_empty = csr_matrix((len_rec_matrix, len_features), dtype=np.float64)
-    return user_feature_empty
+    user_feature_empty = csr_matrix((len_rec_matrix, len_features), dtype=np.int64)
+    user_feature_empty_df = pd.DataFrame(user_feature_empty)
+    return user_feature_empty, user_feature_empty_df
 
 def aux_matrix(rec_matrix,final_movies_matrix) :
     aux_matrix_train = np.dot(rec_matrix, final_movies_matrix)

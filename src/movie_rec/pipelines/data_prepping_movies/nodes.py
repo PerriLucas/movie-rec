@@ -1,6 +1,6 @@
 """This is a boilerplate pipeline 'feature_engineering' generated using Kedro
 0.18.4."""
-
+from kedro.extras.datasets.text import TextDataSet
 import pandas as pd
 import numpy as np
 
@@ -17,6 +17,7 @@ def turn_values_into_columns(unique_genres, movies) :
     movies_pivoted = movies
     for genre in unique_genres:
         movies_pivoted[genre] = 0
+
     for index, row in movies_pivoted.iterrows() :
         for genre in row['genres']:
             movies_pivoted.at[index, genre] = 1
@@ -46,5 +47,5 @@ def titleless_movies(movies_removed_column):
 
 def list_movies_with_genre(movies_removed_column) :
     #Creates a list of movie_ids that have genres
-    movie_with_genres = list(movies_removed_column['movieId'])
+    movie_with_genres = movies_removed_column['movieId'].to_list()
     return movie_with_genres

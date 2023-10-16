@@ -74,20 +74,12 @@ generate_feature_matrix:
 train_df:
   type: pandas.CSVDataSet
   filepath: data/02_intermediate/train_df.csv
-  load_args:
-    sep: ","
-    na_values: ["#NA", NA]
-  save_args:
-    index: False
+
+unique_genres_list:
+  type: kedro.io.MemoryDataSet
 
 final_movies_fixed:
-  type: pandas.CSVDataSet
-  filepath: data/02_intermediate/final_movies_fixed.csv
-  load_args:
-    sep: ","
-    na_values: ["#NA", NA]
-  save_args:
-    index: False
+  type: kedro.io.MemoryDataSet
 
 # Generate empty user x feature
 generate_empty_matrix:

@@ -41,7 +41,7 @@ def create_pipeline(**kwargs) -> Pipeline:
             ),
             node(
                 func=pivot_ratings,
-                inputs="ratings",
+                inputs="ratings_filtered",
                 outputs="pivoted_ratings",
                 name="pivot_ratings_node",
             ),
