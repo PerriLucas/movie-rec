@@ -30,7 +30,7 @@ def aux_matrix_train_cf(rec_matrix, movie_vector_t) :
     return aux_matrix
 
 # Apply approximate SVD model to obtain approximate relevance vectors
-def user_movies_vectors(rec_matrix, movie_vector_t, aux_matrix, movie_vector) :
+def user_movies_vectors(aux_matrix, rec_matrix, movie_vector_t, movie_vector) :
     aux_matrix = rec_matrix.dot(movie_vector_t)
     user_movies = aux_matrix.dot(movie_vector)
     return user_movies
@@ -64,11 +64,13 @@ def expand_cf_rec_list(recommended_cf) :
 def list_padding_cf(recommended_cf, max_length) :
     for key in recommended_cf:
         recommended_cf[key] = recommended_cf[key] + [None] * (max_length - len(recommended_cf[key]))
+    recommended_cf_padded = recommended_cf
     return recommended_cf_padded
 
 def convert_cf_df(recommended_cf_padded) :
     recommended_cf = pd.DataFrame.from_dict(recommended_cf_padded, orient='index')
     recommended_cf.columns = ['first_rec', 'second_rec', 'third_rec', 'fourth_rec', 'fifth_rec']
+    recommended_cf_df = recommended_cf
     return recommended_cf_df
 
 # Merge with movie_info_df to get movie titles, clean the dataset
@@ -86,4 +88,5 @@ def fixed_cf_recs(recommended_cf, movies) :
         
 #save output in a csv
 def output_cf(rec_cf) :
-    rec_cf.to_csv('rec_cf_model.csv', index=False)
+    rec_cf_output = pd.DataFrame(rec_cf)
+    return rec_cf_output

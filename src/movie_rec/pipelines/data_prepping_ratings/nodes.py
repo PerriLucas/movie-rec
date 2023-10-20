@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 
 def ratings_raw_data_get() :
-    ratings = pd.read_csv('data/01_raw/ratings.csv', header=0, index_col = 0)
+    ratings = pd.read_csv('data/01_raw/ratings.csv', header=0, index_col=0)
     return ratings
 
 #remove timestamp rating column

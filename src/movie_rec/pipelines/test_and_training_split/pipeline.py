@@ -34,7 +34,7 @@ def create_pipeline(**kwargs) -> Pipeline:
             node(
                 func=stratify_dataset,
                 inputs=["grouped_ratings"],
-                outputs=["training_sample", "stratified_sample"],
+                outputs=["train_df", "stratified_sample"],
                 name="stratify_dataset_node",
             ),
             node(
@@ -45,8 +45,8 @@ def create_pipeline(**kwargs) -> Pipeline:
             ),
            node(
                 func=prepare_train_df,
-                inputs="training_sample",
-                outputs=["train_df", "train_df_df"],
+                inputs="train_df",
+                outputs=["training_sample", "train_df_df"],
                 name="prepare_train_df",
             ),
     ]

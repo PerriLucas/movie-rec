@@ -32,14 +32,14 @@ def grouped_population(total_ratings_in) :
     return grouped_ratings
 
 def stratify_dataset(grouped_ratings) :
-    training_sample, stratified_sample = train_test_split(grouped_ratings, test_size=0.1, stratify=grouped_ratings['range'])
-    return training_sample, stratified_sample
+    train_df, stratified_sample = train_test_split(grouped_ratings, test_size=0.1, stratify=grouped_ratings['range'])
+    return train_df, stratified_sample
 
 def prepare_test_df(stratified_sample) :
     test_df = stratified_sample.drop(['total_ratings', 'range'], axis=1)
     return test_df
 
-def prepare_train_df(training_sample) :
-    train_df = training_sample.drop(['total_ratings', 'range'], axis=1)
+def prepare_train_df(train_df) :
+    training_sample = train_df.drop(['total_ratings', 'range'], axis=1)
     train_df_df = pd.DataFrame(train_df)
-    return train_df, train_df_df
+    return training_sample, train_df_df

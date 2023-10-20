@@ -16,14 +16,14 @@ def create_pipeline(**kwargs) -> Pipeline:
         [
             node(
                 func=user_feature_matrix,
-                inputs=["rec_matrix", "aux_matrix_train", "user_feature_empty"],
-                outputs=["user_feature", "test"],
+                inputs=["user_feature_empty", "len_rec_matrix", "rec_matrix", "aux_matrix_train"],
+                outputs=["user_feature", "user_feature_df"],
                 name="user_feature_matrix_node",
             ),
             node(
                 func=cosine_similarity_prediction,
                 inputs=["user_feature", "final_movies_matrix"],
-                outputs="prediction",
+                outputs=["prediction", "prediction_df"],
                 name="cosine_similarity_prediction_node",
             ),
             node(
@@ -34,7 +34,7 @@ def create_pipeline(**kwargs) -> Pipeline:
             ),
             node(
                 func=user_recommendation,
-                inputs=["test_matrix", "prediction", "rec_size"], 
+                inputs=["test_matrix", "rec_size", "prediction"], 
                 outputs="recommendation",
                 name="user_recommendation_node",
             ),
@@ -65,7 +65,7 @@ def create_pipeline(**kwargs) -> Pipeline:
             node(
                 func=output_cb,
                 inputs="rec_cb",
-                outputs=[],
+                outputs="rec_cb_output",
                 name="output_cb",
             ),
     ]

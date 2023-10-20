@@ -63,6 +63,10 @@ prepare_train_df:
 final_movies_matrix:
   type: kedro.io.MemoryDataSet
 
+final_movies_matrix_df:
+  type: pandas.CSVDataSet
+  filepath: data/02_intermediate/final_movies_matrix_df.csv
+
 # Generate training ratings matrix
 generate_training_ratings:
   type: kedro.io.MemoryDataSet
@@ -76,10 +80,13 @@ train_df:
 
 rec_matrix:
   type: kedro.io.MemoryDataSet
-  
+
+training_sample:
+  type: kedro.io.MemoryDataSet
+
 rec_matrix_txt:
-  type: text.TextDataSet
-  filepath: data/02_intermediate/rec_matrix.txt
+  type: pandas.CSVDataSet
+  filepath: data/02_intermediate/rec_matrix_txt.csv
 
 train_df_df:
   type: pandas.CSVDataSet
@@ -99,9 +106,17 @@ final_movies_fixed_df:
   type: pandas.CSVDataSet
   filepath: data/02_intermediate/final_movies_fixed_df.csv
 
-user_feature_empty_df:
+prediction_df:
   type: pandas.CSVDataSet
-  filepath: data/02_intermediate/user_feature_empty.csv
+  filepath: data/02_intermediate/prediction_df.csv
+
+user_feature_df:
+  type: pandas.CSVDataSet
+  filepath: data/02_intermediate/user_feature_df.csv
+
+user_feature_df:
+  type: pandas.CSVDataSet
+  filepath: data/02_intermediate/user_feature_df.csv
 
 unique_genres_list:
   type: kedro.io.MemoryDataSet
@@ -117,20 +132,23 @@ generate_empty_matrix:
 aux_matrix:
   type: kedro.io.MemoryDataSet
 
+len_rec_matrix:
+  type: kedro.io.MemoryDataSet
+
 # Generate test ratings matrix
 test_matrix:
   type: kedro.io.MemoryDataSet
 
-test:
+result_df:
   type: pandas.CSVDataSet
-  filepath: data/02_intermediate/test.csv
+  filepath: data/02_intermediate/result_df.csv
 
 ################### Outputs ###################
 
-output_cf:
+rec_cf_output:
   type: pandas.CSVDataSet
-  filepath: data/07_model_output/rec_cf_model.csv
+  filepath: data/07_model_output/rec_cf_output.csv
 
-output_cb:
+rec_cb_output:
   type: pandas.CSVDataSet
-  filepath: data/07_model_output/rec_cb_model.csv
+  filepath: data/07_model_output/rec_cb_output.csv

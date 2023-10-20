@@ -28,7 +28,7 @@ def create_pipeline(**kwargs) -> Pipeline:
             ),
             node(
                 func=svd_matrixes,
-                inputs=["rec_matrix", "factors"],
+                inputs=["factors", "rec_matrix"],
                 outputs=["user_vector", "eingenvalues", "movie_vector"],
                 name="svd_matrixes_node",
             ),
@@ -64,7 +64,7 @@ def create_pipeline(**kwargs) -> Pipeline:
             ),
            node(
                 func=prediction_cf,
-                inputs=["test_matrix", "rec_size", "user_movies"],
+                inputs=["rec_size", "test_matrix", "user_movies"],
                 outputs="recommended_cf",
                 name="prediction_cf_node",
             ),
@@ -95,7 +95,7 @@ def create_pipeline(**kwargs) -> Pipeline:
             node(
                 func=output_cf,
                 inputs="rec_cf",
-                outputs=[],
+                outputs="rec_cf_output",
                 name="output_cf_node",
             ),
     ]

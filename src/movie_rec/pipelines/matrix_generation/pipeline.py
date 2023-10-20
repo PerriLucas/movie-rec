@@ -14,14 +14,14 @@ def create_pipeline(**kwargs) -> Pipeline:
         [
             node(
                 func=generate_training_ratings,
-                inputs="train_df",
+                inputs="training_sample",
                 outputs=["rec_matrix", "rec_matrix_txt"],
                 name="generate_training_ratings_node",
             ),
             node(
                 func=generate_feature_matrix,
                 inputs="final_movies_fixed",
-                outputs="final_movies_matrix",
+                outputs=["final_movies_matrix", "final_movies_matrix_df"],
                 name="generate_feature_matrix_node",
             ),
             node(
@@ -33,7 +33,7 @@ def create_pipeline(**kwargs) -> Pipeline:
             node(
                 func=generate_empty_matrix,
                 inputs=["unique_genres_list", "rec_matrix"],
-                outputs=["user_feature_empty", "user_feature_empty_df"],
+                outputs=["user_feature_empty", "user_feature_empty_df", "len_rec_matrix"],
                 name="generate_empty_matrix_node",
             ),
             node(
